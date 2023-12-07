@@ -100,13 +100,15 @@ public class ListRepository implements Repository {
    */
   @Override
   public List<Pack> query(PackSpecification specification) throws RepositoryException {
-
-      return data.stream().filter(o1 -> {
-        try {
-          return specification.specified(o1);
-        } catch (SpecificationException e) {
-            throw new RuntimeException();
-        }
-      }).toList();
+    List<Pack> out = new ArrayList<>();
+    for(Pack pack : data ){
+      try{
+        if(specification.specified(pack))
+          out.add(pack);
+      }catch (SpecificationException e){
+        throw new RepositoryException("Pack is not correct",e);
+      }
+    }
+    return out;
   }
 }
