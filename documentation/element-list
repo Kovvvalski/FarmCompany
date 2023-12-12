@@ -1,0 +1,8 @@
+by.kovalski.farmcompany.entity
+by.kovalski.farmcompany.exception
+by.kovalski.farmcompany.repository
+by.kovalski.farmcompany.repository.impl
+by.kovalski.farmcompany.repository.specification
+by.kovalski.farmcompany.repository.specification.impl
+by.kovalski.farmcompany.service
+by.kovalski.farmcompany.service.impl
