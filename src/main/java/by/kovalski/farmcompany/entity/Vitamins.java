@@ -9,10 +9,23 @@ public class Vitamins extends Medicine {
    */
   private final Consumer consumer;
 
+  /**
+   *
+   * @param name - name of medicine
+   * @param type - type of medicine
+   * @param dosage - info about dosage
+   * @param consumer - consumer of medicine
+   */
+
   public Vitamins(String name, Type type, String dosage, Consumer consumer) {
     super(name, type, dosage);
     this.consumer = consumer;
   }
+
+  /**
+   *
+   * @return consumer of medicine
+   */
 
   public Consumer getConsumer() {
     return consumer;
@@ -21,7 +34,7 @@ public class Vitamins extends Medicine {
 
   /**
    *
-   * @param o
+   * @param o - any object
    * @return true if objects are equals
    */
 
@@ -32,6 +45,11 @@ public class Vitamins extends Medicine {
     Vitamins vitamins = (Vitamins) o;
     return super.equals(vitamins) && consumer == vitamins.consumer;
   }
+
+  /**
+   *
+   * @return hash code of an object
+   */
 
   @Override
   public int hashCode() {
@@ -47,6 +65,10 @@ public class Vitamins extends Medicine {
             .add("dosage='" + getDosage() + "'")
             .toString();
   }
+
+  /**
+   * returns info about object
+   */
 
   @Override
   public void info() {

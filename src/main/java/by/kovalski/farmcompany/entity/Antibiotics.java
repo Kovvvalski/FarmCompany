@@ -34,7 +34,7 @@ public class Antibiotics extends Medicine{
 
   /**
    *
-   * @param byPrescription
+   * @param byPrescription - boolean value
    */
 
   public void setByPrescription(boolean byPrescription) {
@@ -43,7 +43,7 @@ public class Antibiotics extends Medicine{
 
   /**
    *
-   * @param o
+   * @param o - any object
    * @return true if Objects are equal
    */
 

@@ -1,6 +1,7 @@
 package by.kovalski.farmcompany.service.impl;
 
 import by.kovalski.farmcompany.entity.Pack;
+import by.kovalski.farmcompany.exception.ServiceException;
 import by.kovalski.farmcompany.service.Condition;
 import by.kovalski.farmcompany.service.SortService;
 
@@ -11,23 +12,30 @@ public class SortServiceImpl implements SortService {
    * instance of class
    */
   private static SortServiceImpl Instance;
-  private SortServiceImpl(){
+
+  private SortServiceImpl() {
 
   }
-  public static SortServiceImpl getInstance(){
-    if(Instance == null)
+
+  public static SortServiceImpl getInstance() {
+    if (Instance == null)
       Instance = new SortServiceImpl();
     return Instance;
   }
 
   /**
    * sorting list of packs by condition
+   *
    * @param packs
    * @param condition
    */
   @Override
-  public void sortByCondition(List<Pack> packs, Condition condition) {
-    packs.sort(condition.getComparator());
+  public void sortByCondition(List<Pack> packs, Condition condition) throws ServiceException {
+    try {
+      packs.sort(condition.getComparator());
+    } catch (RuntimeException e) {
+      throw new ServiceException("Null pointer in repository", e);
     }
   }
+}
 

@@ -15,8 +15,8 @@ public class Producer {
 
   /**
    * constructor
-   * @param name
-   * @param certification
+   * @param name - name of producer
+   * @param certification - certificate
    */
 
   public Producer(String name, Certification certification) {
@@ -26,7 +26,7 @@ public class Producer {
 
   /**
    *
-   * @return
+   * @return name of consumer
    */
   public String getName() {
     return name;
@@ -34,7 +34,7 @@ public class Producer {
 
   /**
    *
-   * @return
+   * @return certification of consumer
    */
 
   public Certification getCertification() {
@@ -43,7 +43,7 @@ public class Producer {
 
   /**
    *
-   * @param o
+   * @param o - any object
    * @return true if objects are equals
    */
 

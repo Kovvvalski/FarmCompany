@@ -10,10 +10,23 @@ public class Psychotropics extends Medicine{
    */
   private final String negativeEffects;
 
+  /**
+   *
+   * @param name - name of medicine
+   * @param type - type of medicine
+   * @param dosage - info about dosage
+   * @param negativeEffects - possible negative effects
+   */
+
   public Psychotropics(String name, Type type, String dosage, String negativeEffects) {
     super(name, type, dosage);
     this.negativeEffects = negativeEffects;
   }
+
+  /**
+   *
+   * @return info about negative effects
+   */
 
   public String getNegativeEffects() {
     return negativeEffects;
@@ -22,7 +35,7 @@ public class Psychotropics extends Medicine{
 
   /**
    *
-   * @param o
+   * @param o - any object
    * @return true if objects are equals
    */
 

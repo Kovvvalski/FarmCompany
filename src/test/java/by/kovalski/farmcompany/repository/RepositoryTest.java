@@ -54,19 +54,31 @@ public class RepositoryTest {
 
     Pack p2 = new Pack(1, new Producer("Belfarm", new Certification("reg1", "6d6a5sda5", LocalDate.of(2022, 12, 13), LocalDate.of(2024, 12, 13))), new Vitamins("VitA", Type.TABLETS, "2 times in day", Consumer.ALL), 300, 5);
     Assertions.assertEquals(true, p2.equals(repository.getData().get(0)));
-    for(Pack pack:testData){
-      pack.getMedicine().toString();
-      pack.getMedicine().hashCode();
-      pack.getMedicine().equals(p2);
-      pack.getMedicine().info();
-      pack.toString();
-    }
+//    for(Pack pack:testData){
+//      pack.getMedicine().toString();
+//      pack.getMedicine().hashCode();
+//      pack.getMedicine().equals(p2);
+//      pack.getMedicine().info();
+//      pack.toString();
+//    }
+    repository.setData(new ArrayList<>());
+  }
+
+  @Test
+  void addExpectedException() {
+    ListRepository repository = ListRepository.getInstance();
+    Assertions.assertThrows(RepositoryException.class, () -> {
+      repository.addPack(null);
+    });
+    repository.setData(new ArrayList<>());
   }
 
   @Test
   void remove() {
     Pack p1 = new Pack(1, new Producer("Belfarm", new Certification("reg1", "6d6a5sda5", LocalDate.of(2022, 12, 13), LocalDate.of(2024, 12, 13))), new Vitamins("VitA", Type.TABLETS, "2 times in day", Consumer.ALL), 300, 5);
+
     ListRepository repository = ListRepository.getInstance();
+    repository.setData(new ArrayList<>());
     try {
       repository.addPack(p1);
     } catch (RepositoryException e) {
@@ -78,6 +90,15 @@ public class RepositoryTest {
       e.printStackTrace();
     }
     Assertions.assertEquals(true, repository.getData().isEmpty());
+  }
+
+  @Test
+  void removeExpectedException() {
+    ListRepository repository = ListRepository.getInstance();
+    Assertions.assertThrows(RepositoryException.class, () -> {
+      repository.removePack(new Pack(3, new Producer("Belfarm", new Certification("reg1", "6d6a5sda5", LocalDate.of(2022, 12, 13), LocalDate.of(2024, 12, 13))), new Vitamins("VitA", Type.TABLETS, "2 times in day", Consumer.ALL), 300, 5));
+    });
+    repository.setData(new ArrayList<>());
   }
 
   @Test
@@ -98,10 +119,11 @@ public class RepositoryTest {
     Pack p2 = new Pack(1, new Producer("Belfarm", new Certification("reg1", "6d6a5sda5", LocalDate.of(2022, 12, 13), LocalDate.of(2024, 12, 13))), new Vitamins("VitA", Type.TABLETS, "2 times in day", Consumer.ALL), 300, 5);
     p2.setPrice(500);
     Assertions.assertEquals(true, repository.getData().get(0).equals(p2));
+    repository.setData(new ArrayList<>());
   }
 
   @Test
-  void query()throws RepositoryException {
+  void query() throws RepositoryException {
     ListRepository repository = ListRepository.getInstance();
     repository.setData(new ArrayList<>());
     repository.setData(testData);
@@ -125,5 +147,8 @@ public class RepositoryTest {
     for (Pack pack : query) {
       Assertions.assertEquals(true, pack.getProducer().equals(p));
     }
+    repository.setData(new ArrayList<>());
   }
+
+
 }

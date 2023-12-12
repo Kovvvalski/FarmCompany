@@ -8,11 +8,11 @@ public class Certification {
 
   private static final LocalDate DEFAULT_DATE_VALUE = LocalDate.of(2022, 1, 1);
   /**
-   *name of reg organization
+   *name of registry organization
    */
   private final String registryOrganization;
   /**
-   * certificate if
+   * certificate id
    */
   private final String id;
   /**

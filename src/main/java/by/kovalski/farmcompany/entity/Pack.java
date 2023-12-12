@@ -4,6 +4,12 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 public class Pack {
+
+  /**
+   * default value
+   */
+
+  private static final int DEFAULT_PRICE_VALUE = 1;
   /**
    * id of pack
    */
@@ -27,11 +33,11 @@ public class Pack {
 
   /**
    * constructor
-   * @param id
-   * @param producer
-   * @param medicine
-   * @param totalWeight
-   * @param price
+   * @param id - any id
+   * @param producer - producer of the pack
+   * @param medicine - content of the pack
+   * @param totalWeight - weight of the pack
+   * @param price - price of the pack
    */
   public Pack(int id, Producer producer, Medicine medicine, int totalWeight, int price) {
     this.id = id;
@@ -43,7 +49,7 @@ public class Pack {
 
   /**
    *
-   * @return
+   * @return id of the pack
    */
   public int getId() {
     return id;
@@ -51,7 +57,7 @@ public class Pack {
 
   /**
    *
-   * @return
+   * @return producer of the pack
    */
 
   public Producer getProducer() {
@@ -60,12 +66,17 @@ public class Pack {
 
   /**
    *
-   * @return
+   * @return medicine of the pack
    */
 
   public Medicine getMedicine() {
     return medicine;
   }
+
+  /**
+   *
+   * @return total weight of the pack
+   */
 
   public int getTotalWeight() {
     return totalWeight;
@@ -73,7 +84,7 @@ public class Pack {
 
   /**
    *
-   * @return
+   * @return price
    */
 
   public int getPrice() {
@@ -81,11 +92,11 @@ public class Pack {
   }
 
   /**
-   * sets price
-   * @param price
+   * sets price with positive number checking
+   * @param price - valid int value
    */
   public void setPrice(int price) {
-    this.price = price;
+    this.price = price >= 0 ? price : DEFAULT_PRICE_VALUE;
   }
 
 

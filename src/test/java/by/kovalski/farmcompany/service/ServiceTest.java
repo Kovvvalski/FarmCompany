@@ -1,6 +1,7 @@
 package by.kovalski.farmcompany.service;
 
 import by.kovalski.farmcompany.entity.*;
+import by.kovalski.farmcompany.exception.ServiceException;
 import by.kovalski.farmcompany.service.impl.CountServiceImpl;
 import by.kovalski.farmcompany.service.impl.SortServiceImpl;
 import org.junit.jupiter.api.Assertions;
@@ -43,19 +44,33 @@ public class ServiceTest {
   @Test
   void countWeight () {
     CountService service = CountServiceImpl.getInstance();
-    Assertions.assertEquals(4000,service.countTotalWeight(testData));
+    try {
+      Assertions.assertEquals(4000,service.countTotalWeight(testData));
+
+    }catch (ServiceException e){
+      e.printStackTrace();
+    }
   }
   @Test
   void countPrice(){
     CountService service = CountServiceImpl.getInstance();
-    Assertions.assertEquals(140,service.countTotalPrice(testData));
+    try{
+      Assertions.assertEquals(140,service.countTotalPrice(testData));
+    }catch (ServiceException e){
+      e.printStackTrace();
+    }
 
   }
 
   @Test
   void sort(){
     SortService service = SortServiceImpl.getInstance();
-    service.sortByCondition(testData, Condition.ID);
+    try {
+      service.sortByCondition(testData, Condition.ID);
+    }catch (ServiceException e){
+      e.printStackTrace();
+    }
+
     int prev = 1;
     for(Pack pack : testData){
       Assertions.assertEquals(pack.getId()>=prev,true);

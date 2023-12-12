@@ -32,44 +32,48 @@ public class ListRepository implements Repository {
   public static ListRepository getInstance() {
     if (Instance == null) {
       Instance = new ListRepository();
-      Instance.setData(new ArrayList<>());
+      Instance.data = new ArrayList<>();
     }
     return Instance;
   }
 
   /**
    *
-   * @return all packs
+   * @return all copy of data list
    */
   public List<Pack> getData() {
     return new ArrayList<>(data);
   }
 
   /**
-   * sets packs
-   * @param data
+   * sets packs with null pointer checking
+   * @param data - any list of packs
    */
 
   public void setData(List<Pack> data) {
-    this.data = new ArrayList<>(data);
+    this.data = new ArrayList<>();
+    for(Pack pack: data){
+      if(pack!=null)
+        this.data.add(pack);
+    }
   }
 
   /**
-   * if repository does not contains an argument, add it, else throws exception
-   * @param pack
+   * if repository does not contain an argument, add it, else throws exception
+   * @param pack - any pack
    * @throws RepositoryException
    */
 
   @Override
   public void addPack(Pack pack) throws RepositoryException {
-    if (data.stream().anyMatch(o -> o.getId() == pack.getId()) || pack == null)
-      throw new RepositoryException("The pack of medicine with id " + pack.getId() + " is already exists in repository or it's null");
+    if (pack == null || data.stream().anyMatch(o -> o.getId() == pack.getId()))
+      throw new RepositoryException("The pack of medicine with is already exists in repository or it's null");
     data.add(pack);
   }
 
   /**
    * deletes pack by id if it exists, else throws exception
-   * @param pack
+   * @param pack - any pack
    * @throws RepositoryException
    */
   @Override
@@ -82,7 +86,7 @@ public class ListRepository implements Repository {
 
   /**
    * deletes pack by id and adds it again
-   * @param pack
+   * @param pack - any pack
    * @throws RepositoryException
    */
 
@@ -94,8 +98,8 @@ public class ListRepository implements Repository {
 
   /**
    * returns list of packs that equals to specification
-   * @param specification
-   * @return
+   * @param specification - any specification
+   * @return list of specified packs
    * @throws RepositoryException
    */
   @Override

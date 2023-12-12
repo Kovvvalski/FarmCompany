@@ -43,7 +43,7 @@ public abstract class Medicine {
 
   /**
    *
-   * @param o
+   * @param o - any object
    * @return true if objects are equals
    */
 
